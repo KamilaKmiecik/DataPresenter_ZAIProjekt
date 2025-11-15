@@ -13,7 +13,11 @@ WORKDIR /source
 # Copy everything
 COPY . .
 
-# Restore dependencies
+# Install npm dependencies for frontend
+WORKDIR /source/datapresenter.client
+RUN npm install
+
+# Restore .NET dependencies
 WORKDIR /source/DataPresenter.Server
 RUN dotnet restore
 
