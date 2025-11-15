@@ -19,7 +19,8 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddDbContext<DataPresenterDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 var jwtKey = builder.Configuration["Jwt:Key"] ?? "YourSuperSecretKeyHereThatIsAtLeast32CharactersLong!";
 var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "MeasurementApp";
@@ -102,6 +103,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
+
+
 
 
 using (var scope = app.Services.CreateScope())
