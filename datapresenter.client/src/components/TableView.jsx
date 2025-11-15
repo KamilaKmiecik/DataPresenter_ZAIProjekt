@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { format } from 'date-fns';
 import { useAuth } from '../hooks/useAuth';
 import { measurementsAPI } from '../services/api';
-import { Edit2, Trash2, Save, X } from 'lucide-react';
+import { Edit2, Trash2, Save, X, Table } from 'lucide-react';
 
 const TableView = ({
     measurements,
@@ -91,9 +91,31 @@ const TableView = ({
     if (measurements.length === 0) {
         return (
             <div className="card">
-                <h2 className="text-xl font-bold mb-4">Tabela pomiarów</h2>
+                <div className="flex items-center gap-3 mb-4">
+                    <div style={{
+                        width: '40px',
+                        height: '40px',
+                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        borderRadius: '12px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        boxShadow: '0 4px 15px rgba(102, 126, 234, 0.3)'
+                    }}>
+                        <Table className="w-5 h-5 text-white" />
+                    </div>
+                    <h2 className="text-xl font-bold" style={{
+                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text'
+                    }}>
+                        Measurements table
+                    </h2>
+                </div>
                 <div className="text-center text-gray-500 py-8">
-                    Brak danych do wyœwietlenia
+                    <Table className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+                    <p className="font-medium">No data for this time period</p>
                 </div>
             </div>
         );
@@ -101,136 +123,286 @@ const TableView = ({
 
     return (
         <div className="card print-full-width">
-            <h2 className="text-xl font-bold mb-4">Tabela pomiarów</h2>
+            <div className="flex items-center gap-3 mb-4">
+                <div style={{
+                    width: '40px',
+                    height: '40px',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    borderRadius: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 4px 15px rgba(102, 126, 234, 0.3)'
+                }}>
+                    <Table className="w-5 h-5 text-white" />
+                </div>
+                <h2 className="text-xl font-bold" style={{
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                }}>
+                    Measurements table
+                </h2>
+            </div>
 
-            <div className="overflow-x-auto max-h-[500px] overflow-y-auto">
-                <table className="w-full text-sm">
-                    <thead className="bg-gray-50 sticky top-0">
-                        <tr>
-                            <th className="px-3 py-2 text-left font-medium text-gray-700">
-                                Data i czas
-                            </th>
-                            <th className="px-3 py-2 text-left font-medium text-gray-700">
-                                Seria
-                            </th>
-                            <th className="px-3 py-2 text-right font-medium text-gray-700">
-                                Wartoœæ
-                            </th>
-                            {isAuthenticated && (
-                                <th className="px-3 py-2 text-center font-medium text-gray-700 no-print">
-                                    Akcje
+            <div style={{
+                background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.02) 0%, rgba(118, 75, 162, 0.02) 100%)',
+                borderRadius: '16px',
+                border: '2px solid rgba(102, 126, 234, 0.05)',
+                overflow: 'hidden'
+            }}>
+                <div className="overflow-x-auto max-h-[500px] overflow-y-auto">
+                    <table className="w-full text-sm">
+                        <thead style={{
+                            background: 'linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%)',
+                            position: 'sticky',
+                            top: 0,
+                            zIndex: 10
+                        }}>
+                            <tr>
+                                <th style={{
+                                    padding: '14px 16px',
+                                    textAlign: 'left',
+                                    fontWeight: '700',
+                                    color: '#374151',
+                                    textTransform: 'uppercase',
+                                    fontSize: '11px',
+                                    letterSpacing: '0.5px'
+                                }}>
+                                   Date and time
                                 </th>
-                            )}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {sortedMeasurements.map((m) => {
-                            const seriesData = series.find((s) => s.id === m.seriesId);
-                            const isSelected = selectedMeasurement?.id === m.id;
-                            const isEditing = editingId === m.id;
+                                <th style={{
+                                    padding: '14px 16px',
+                                    textAlign: 'left',
+                                    fontWeight: '700',
+                                    color: '#374151',
+                                    textTransform: 'uppercase',
+                                    fontSize: '11px',
+                                    letterSpacing: '0.5px'
+                                }}>
+                                   Series   
+                                </th>
+                                <th style={{
+                                    padding: '14px 16px',
+                                    textAlign: 'right',
+                                    fontWeight: '700',
+                                    color: '#374151',
+                                    textTransform: 'uppercase',
+                                    fontSize: '11px',
+                                    letterSpacing: '0.5px'
+                                }}>
+                                    Value
+                                </th>
+                                {isAuthenticated && (
+                                    <th className="no-print" style={{
+                                        padding: '14px 16px',
+                                        textAlign: 'center',
+                                        fontWeight: '700',
+                                        color: '#374151',
+                                        textTransform: 'uppercase',
+                                        fontSize: '11px',
+                                        letterSpacing: '0.5px'
+                                    }}>
+                                        Akcje
+                                    </th>
+                                )}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {sortedMeasurements.map((m) => {
+                                const seriesData = series.find((s) => s.id === m.seriesId);
+                                const isSelected = selectedMeasurement?.id === m.id;
+                                const isEditing = editingId === m.id;
 
-                            return (
-                                <tr
-                                    key={m.id}
-                                    className={
-                                        isSelected
-                                            ? 'table-row-selected'
-                                            : 'table-row border-b border-gray-100'
-                                    }
-                                    onClick={() => !isEditing && onMeasurementSelect(m)}
-                                >
-                                    <td className="px-3 py-2">
-                                        {isEditing ? (
-                                            <input
-                                                type="datetime-local"
-                                                value={editTimestamp}
-                                                onChange={(e) => setEditTimestamp(e.target.value)}
-                                                onClick={(e) => e.stopPropagation()}
-                                                className="input-field text-xs"
-                                            />
-                                        ) : (
-                                            <div className="text-xs">
-                                                <div>{format(new Date(m.timestamp), 'dd.MM.yyyy')}</div>
-                                                <div className="text-gray-500">
-                                                    {format(new Date(m.timestamp), 'HH:mm:ss')}
-                                                </div>
-                                            </div>
-                                        )}
-                                    </td>
-                                    <td className="px-3 py-2">
-                                        <span
-                                            className="inline-block w-3 h-3 rounded-full mr-2"
-                                            style={{ backgroundColor: seriesData?.color }}
-                                        ></span>
-                                        <span className="text-xs">{m.seriesName}</span>
-                                    </td>
-                                    <td className="px-3 py-2 text-right font-medium">
-                                        {isEditing ? (
-                                            <div onClick={(e) => e.stopPropagation()}>
-                                                <input
-                                                    type="number"
-                                                    step="0.01"
-                                                    value={editValue}
-                                                    onChange={(e) => setEditValue(e.target.value)}
-                                                    onKeyDown={(e) => handleKeyPress(e, m)}
-                                                    className="input-field text-right"
-                                                    autoFocus
-                                                />
-                                                {error && (
-                                                    <div className="text-xs text-red-600 mt-1">{error}</div>
-                                                )}
-                                            </div>
-                                        ) : (
-                                            `${m.value} ${m.seriesUnit}`
-                                        )}
-                                    </td>
-                                    {isAuthenticated && (
-                                        <td
-                                            className="px-3 py-2 no-print"
-                                            onClick={(e) => e.stopPropagation()}
-                                        >
+                                return (
+                                    <tr
+                                        key={m.id}
+                                        className={isSelected ? 'table-row-selected' : 'table-row'}
+                                        onClick={() => !isEditing && onMeasurementSelect(m)}
+                                        style={{
+                                            cursor: isEditing ? 'default' : 'pointer',
+                                            borderBottom: '1px solid rgba(229, 231, 235, 0.5)'
+                                        }}
+                                    >
+                                        <td style={{ padding: '12px 16px' }}>
                                             {isEditing ? (
-                                                <div className="flex gap-1 justify-center">
-                                                    <button
-                                                        onClick={() => handleEditSave(m)}
-                                                        className="p-1 text-green-600 hover:bg-green-50 rounded"
-                                                        title="Zapisz"
-                                                    >
-                                                        <Save className="w-4 h-4" />
-                                                    </button>
-                                                    <button
-                                                        onClick={handleEditCancel}
-                                                        className="p-1 text-gray-600 hover:bg-gray-100 rounded"
-                                                        title="Anuluj"
-                                                    >
-                                                        <X className="w-4 h-4" />
-                                                    </button>
-                                                </div>
+                                                <input
+                                                    type="datetime-local"
+                                                    value={editTimestamp}
+                                                    onChange={(e) => setEditTimestamp(e.target.value)}
+                                                    onClick={(e) => e.stopPropagation()}
+                                                    className="input-field text-xs"
+                                                />
                                             ) : (
-                                                <div className="flex gap-1 justify-center">
-                                                    <button
-                                                        onClick={() => handleEditStart(m)}
-                                                        className="p-1 text-primary-600 hover:bg-primary-50 rounded"
-                                                        title="Edytuj"
-                                                    >
-                                                        <Edit2 className="w-4 h-4" />
-                                                    </button>
-                                                    <button
-                                                        onClick={() => handleDelete(m.id)}
-                                                        className="p-1 text-red-600 hover:bg-red-50 rounded"
-                                                        title="Usuñ"
-                                                    >
-                                                        <Trash2 className="w-4 h-4" />
-                                                    </button>
+                                                <div style={{ fontSize: '13px' }}>
+                                                    <div style={{ fontWeight: '600', color: '#374151' }}>
+                                                        {format(new Date(m.timestamp), 'dd.MM.yyyy')}
+                                                    </div>
+                                                    <div style={{ color: '#9ca3af', fontSize: '12px' }}>
+                                                        {format(new Date(m.timestamp), 'HH:mm:ss')}
+                                                    </div>
                                                 </div>
                                             )}
                                         </td>
-                                    )}
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                                        <td style={{ padding: '12px 16px' }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                <span
+                                                    style={{
+                                                        width: '16px',
+                                                        height: '16px',
+                                                        borderRadius: '50%',
+                                                        backgroundColor: seriesData?.color,
+                                                        boxShadow: `0 2px 8px ${seriesData?.color}40`,
+                                                        flexShrink: 0
+                                                    }}
+                                                ></span>
+                                                <span style={{
+                                                    fontSize: '13px',
+                                                    fontWeight: '600',
+                                                    color: '#374151'
+                                                }}>
+                                                    {m.seriesName}
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td style={{ padding: '12px 16px', textAlign: 'right' }}>
+                                            {isEditing ? (
+                                                <div onClick={(e) => e.stopPropagation()}>
+                                                    <input
+                                                        type="number"
+                                                        step="0.01"
+                                                        value={editValue}
+                                                        onChange={(e) => setEditValue(e.target.value)}
+                                                        onKeyDown={(e) => handleKeyPress(e, m)}
+                                                        className="input-field text-right"
+                                                        autoFocus
+                                                    />
+                                                    {error && (
+                                                        <div style={{
+                                                            fontSize: '11px',
+                                                            color: '#ef4444',
+                                                            marginTop: '4px',
+                                                            fontWeight: '600'
+                                                        }}>
+                                                            {error}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            ) : (
+                                                <span style={{
+                                                    fontWeight: '700',
+                                                    fontSize: '14px',
+                                                    color: seriesData?.color || '#374151'
+                                                }}>
+                                                    {m.value} <span style={{
+                                                        fontSize: '12px',
+                                                        fontWeight: '600',
+                                                        color: '#9ca3af'
+                                                    }}>{m.seriesUnit}</span>
+                                                </span>
+                                            )}
+                                        </td>
+                                        {isAuthenticated && (
+                                            <td
+                                                className="no-print"
+                                                style={{ padding: '12px 16px' }}
+                                                onClick={(e) => e.stopPropagation()}
+                                            >
+                                                {isEditing ? (
+                                                    <div style={{
+                                                        display: 'flex',
+                                                        gap: '6px',
+                                                        justifyContent: 'center'
+                                                    }}>
+                                                        <button
+                                                            onClick={() => handleEditSave(m)}
+                                                            style={{
+                                                                padding: '6px',
+                                                                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                                                                color: 'white',
+                                                                borderRadius: '8px',
+                                                                border: 'none',
+                                                                cursor: 'pointer',
+                                                                boxShadow: '0 2px 8px rgba(16, 185, 129, 0.3)'
+                                                            }}
+                                                            title="Zapisz"
+                                                        >
+                                                            <Save className="w-4 h-4" />
+                                                        </button>
+                                                        <button
+                                                            onClick={handleEditCancel}
+                                                            style={{
+                                                                padding: '6px',
+                                                                background: '#f3f4f6',
+                                                                color: '#6b7280',
+                                                                borderRadius: '8px',
+                                                                border: 'none',
+                                                                cursor: 'pointer'
+                                                            }}
+                                                            title="Anuluj"
+                                                        >
+                                                            <X className="w-4 h-4" />
+                                                        </button>
+                                                    </div>
+                                                ) : (
+                                                    <div style={{
+                                                        display: 'flex',
+                                                        gap: '6px',
+                                                        justifyContent: 'center'
+                                                    }}>
+                                                        <button
+                                                            onClick={() => handleEditStart(m)}
+                                                            style={{
+                                                                padding: '6px',
+                                                                background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)',
+                                                                color: '#667eea',
+                                                                borderRadius: '8px',
+                                                                border: 'none',
+                                                                cursor: 'pointer',
+                                                                transition: 'all 0.2s ease'
+                                                            }}
+                                                            title="Edytuj"
+                                                            onMouseEnter={(e) => {
+                                                                e.target.style.background = 'linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%)';
+                                                            }}
+                                                            onMouseLeave={(e) => {
+                                                                e.target.style.background = 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)';
+                                                            }}
+                                                        >
+                                                            <Edit2 className="w-4 h-4" />
+                                                        </button>
+                                                        <button
+                                                            onClick={() => handleDelete(m.id)}
+                                                            style={{
+                                                                padding: '6px',
+                                                                background: 'rgba(239, 68, 68, 0.1)',
+                                                                color: '#ef4444',
+                                                                borderRadius: '8px',
+                                                                border: 'none',
+                                                                cursor: 'pointer',
+                                                                transition: 'all 0.2s ease'
+                                                            }}
+                                                            title="Usuñ"
+                                                            onMouseEnter={(e) => {
+                                                                e.target.style.background = 'rgba(239, 68, 68, 0.2)';
+                                                            }}
+                                                            onMouseLeave={(e) => {
+                                                                e.target.style.background = 'rgba(239, 68, 68, 0.1)';
+                                                            }}
+                                                        >
+                                                            <Trash2 className="w-4 h-4" />
+                                                        </button>
+                                                    </div>
+                                                )}
+                                            </td>
+                                        )}
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );

@@ -69,7 +69,7 @@ const ChartView = ({ measurements, series, selectedMeasurement }) => {
             <div className="card">
                 <h2 className="text-xl font-bold mb-4">Wykres pomiarów</h2>
                 <div className="h-96 flex items-center justify-center text-gray-500">
-                    Brak danych do wyœwietlenia
+                    No data for this time period
                 </div>
             </div>
         );
@@ -77,7 +77,7 @@ const ChartView = ({ measurements, series, selectedMeasurement }) => {
 
     return (
         <div className="card print-full-width">
-            <h2 className="text-xl font-bold mb-4">Wykres pomiarów</h2>
+            <h2 className="text-xl font-bold mb-4">Measurements graph</h2>
 
             <ResponsiveContainer width="100%" height={400}>
                 <LineChart data={chartData}>
