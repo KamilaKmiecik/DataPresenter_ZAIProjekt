@@ -2,15 +2,14 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /source
 
-# Copy csproj and restore dependencies
-COPY DataPresenter.Server/*.csproj DataPresenter.Server/
-COPY datapresenter.client/*.csproj datapresenter.client/ 2>/dev/null || true
-RUN dotnet restore DataPresenter.Server/DataPresenter.Server.csproj
+# Copy everything
+COPY . .
 
-# Copy everything else and build
-COPY DataPresenter.Server/ DataPresenter.Server/
-COPY datapresenter.client/ datapresenter.client/ 2>/dev/null || true
+# Restore dependencies
 WORKDIR /source/DataPresenter.Server
+RUN dotnet restore
+
+# Build and publish
 RUN dotnet publish -c Release -o /app/publish
 
 # Stage 2: Runtime
