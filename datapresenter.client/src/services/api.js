@@ -48,19 +48,18 @@ export const authAPI = {
 // Series API
 export const seriesAPI = {
     getAll: () => api.get('/series'),
-    getById: (id) => api.get(`/series/${id}`),
+    getById: (id) => api.get(`/series/${id}`),  // ? tutaj zmieñ
     create: (data) => api.post('/series', data),
-    update: (id, data) => api.put(`/series/${id}`, data),
-    delete: (id) => api.delete(`/series/${id}`),
+    update: (id, data) => api.put(`/series/${id}`, data),  // ? tutaj zmieñ
+    delete: (id) => api.delete(`/series/${id}`),  // ? tutaj zmieñ
 };
 
 // Measurements API
 export const measurementsAPI = {
     getAll: (params) => api.get('/measurements', { params }),
-    getById: (id) => api.get(`/measurements/${id}`),
+    getById: (id) => api.get(`/measurements/${id}`),  // ? tutaj zmieñ
     create: (data) => api.post('/measurements', data),
-    update: (id, data) => api.put(`/measurements/${id}`, data),
-    delete: (id) => api.delete(`/measurements/${id}`),
+    update: (id, data) => api.put(`/measurements/${id}`, data),  // ? tutaj zmieñ
+    delete: (id) => api.delete(`/measurements/${id}`),  // ? tutaj zmieñ
 };
-
 export default api;

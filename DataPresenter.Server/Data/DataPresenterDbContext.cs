@@ -89,46 +89,27 @@ namespace DataPresenter.Server.Data
             var fixedDate = new DateTime(2024, 11, 1, 0, 0, 0, DateTimeKind.Utc);
 
             modelBuilder.Entity<User>().HasData(
-                new User
-                {
-                    Id = 1,
-                    Username = "admin",
-                    Email = "admin@example.com",
-                    PasswordHash = "$2a$11$zA2MzBfG5URvZ7.RZoP9.O3UQprC5ZBlhz6ZcY5aJrk0Gq2a4u0yW",
-                    CreatedAt = fixedDate
-                },
-                new User
-                {
-                    Id = 2,
-                    Username = "jan_kowalski",
-                    Email = "jan.kowalski@example.com",
-                    PasswordHash = "$2a$11$testhash000000000000000000000000000000000000000000000000",
-                    CreatedAt = fixedDate
-                },
-                new User
-                {
-                    Id = 3,
-                    Username = "anna_nowak",
-                    Email = "anna.nowak@example.com",
-                    PasswordHash = "$2a$11$testhash111111111111111111111111111111111111111111111111",
-                    CreatedAt = fixedDate
-                }
+            new User { Id = 1, Username = "admin", Email = "admin@example.com", PasswordHash = "$2a$11$zA2MzBfG5URvZ7.RZoP9.O3UQprC5ZBlhz6ZcY5aJrk0Gq2a4u0yW", CreatedAt = fixedDate },
+            new User { Id = 2, Username = "jan_kowalski", Email = "jan.kowalski@example.com", PasswordHash = "$2a$11$testhash000000000000000000000000000000000000000000000000", CreatedAt = fixedDate },
+            new User { Id = 3, Username = "anna_nowak", Email = "anna.nowak@example.com", PasswordHash = "$2a$11$testhash111111111111111111111111111111111111111111111111", CreatedAt = fixedDate }
             );
+
 
             modelBuilder.Entity<Series>().HasData(
-                new Series { Id = 1, Name = "Temperatura pokojowa", Description = "Pomiar temperatury w pomieszczeniach", MinValue = -10, MaxValue = 50, Unit = "°C", Color = "#EF4444", Icon = "thermometer", CreatedAt = fixedDate },
-                new Series { Id = 2, Name = "Wilgotność powietrza", Description = "Pomiar wilgotności względnej", MinValue = 0, MaxValue = 100, Unit = "%", Color = "#3B82F6", Icon = "droplet", CreatedAt = fixedDate },
-                new Series { Id = 3, Name = "Ciśnienie atmosferyczne", Description = "Pomiar ciśnienia powietrza", MinValue = 950, MaxValue = 1050, Unit = "hPa", Color = "#10B981", Icon = "gauge", CreatedAt = fixedDate },
-                new Series { Id = 4, Name = "Natężenie światła", Description = "Pomiar jasności otoczenia", MinValue = 0, MaxValue = 10000, Unit = "lx", Color = "#FBBF24", Icon = "sun", CreatedAt = fixedDate },
-                new Series { Id = 5, Name = "Stężenie CO₂", Description = "Pomiar dwutlenku węgla w powietrzu", MinValue = 300, MaxValue = 2000, Unit = "ppm", Color = "#6B7280", Icon = "cloud", CreatedAt = fixedDate }
+            new Series { Id = 1, Name = "Room Temperature", Description = "Measurement of indoor temperature", MinValue = -10, MaxValue = 50, Unit = "°C", Color = "#EF4444", Icon = "thermometer", CreatedAt = fixedDate },
+            new Series { Id = 2, Name = "Air Humidity", Description = "Measurement of relative humidity", MinValue = 0, MaxValue = 100, Unit = "%", Color = "#3B82F6", Icon = "droplet", CreatedAt = fixedDate },
+            new Series { Id = 3, Name = "Atmospheric Pressure", Description = "Measurement of air pressure", MinValue = 950, MaxValue = 1050, Unit = "hPa", Color = "#10B981", Icon = "gauge", CreatedAt = fixedDate },
+            new Series { Id = 4, Name = "Light Intensity", Description = "Measurement of ambient brightness", MinValue = 0, MaxValue = 10000, Unit = "lx", Color = "#FBBF24", Icon = "sun", CreatedAt = fixedDate },
+            new Series { Id = 5, Name = "CO₂ Concentration", Description = "Measurement of carbon dioxide levels in the air", MinValue = 300, MaxValue = 2000, Unit = "ppm", Color = "#6B7280", Icon = "cloud", CreatedAt = fixedDate }
             );
 
+
             modelBuilder.Entity<Sensor>().HasData(
-                new Sensor { Id = 1, Name = "Sensor temperatury - Salon", ApiKey = "TEMP_SALON_KEY", SeriesId = 1, Description = "Czujnik DHT22 w salonie", CreatedAt = fixedDate },
-                new Sensor { Id = 2, Name = "Sensor wilgotności - Salon", ApiKey = "HUM_SALON_KEY", SeriesId = 2, Description = "Czujnik DHT22 w salonie", CreatedAt = fixedDate },
-                new Sensor { Id = 3, Name = "Sensor ciśnienia - Balkon", ApiKey = "PRESS_OUT_KEY", SeriesId = 3, Description = "Czujnik BMP180 na balkonie", CreatedAt = fixedDate },
-                new Sensor { Id = 4, Name = "Sensor światła - Biuro", ApiKey = "LIGHT_OFFICE_KEY", SeriesId = 4, Description = "Czujnik LDR w biurze", CreatedAt = fixedDate },
-                new Sensor { Id = 5, Name = "Sensor CO2 - Kuchnia", ApiKey = "CO2_KITCHEN_KEY", SeriesId = 5, Description = "Czujnik MH-Z19B w kuchni", CreatedAt = fixedDate }
+            new Sensor { Id = 1, Name = "Temperature Sensor - Living Room", ApiKey = "TEMP_SALON_KEY", SeriesId = 1, Description = "DHT22 sensor in the living room", CreatedAt = fixedDate },
+            new Sensor { Id = 2, Name = "Humidity Sensor - Living Room", ApiKey = "HUM_SALON_KEY", SeriesId = 2, Description = "DHT22 sensor in the living room", CreatedAt = fixedDate },
+            new Sensor { Id = 3, Name = "Pressure Sensor - Balcony", ApiKey = "PRESS_OUT_KEY", SeriesId = 3, Description = "BMP180 sensor on the balcony", CreatedAt = fixedDate },
+            new Sensor { Id = 4, Name = "Light Sensor - Office", ApiKey = "LIGHT_OFFICE_KEY", SeriesId = 4, Description = "LDR sensor in the office", CreatedAt = fixedDate },
+            new Sensor { Id = 5, Name = "CO2 Sensor - Kitchen", ApiKey = "CO2_KITCHEN_KEY", SeriesId = 5, Description = "MH-Z19B sensor in the kitchen", CreatedAt = fixedDate }
             );
 
             modelBuilder.Entity<Measurement>().HasData(

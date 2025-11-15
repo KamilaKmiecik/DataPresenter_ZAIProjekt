@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataPresenter.Server.Migrations
 {
     [DbContext(typeof(DataPresenterDbContext))]
-    [Migration("20251115091017_InitialCreate")]
+    [Migration("20251115132837_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -9269,9 +9269,9 @@ namespace DataPresenter.Server.Migrations
                             Id = 1,
                             ApiKey = "TEMP_SALON_KEY",
                             CreatedAt = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Czujnik DHT22 w salonie",
+                            Description = "DHT22 sensor in the living room",
                             IsActive = true,
-                            Name = "Sensor temperatury - Salon",
+                            Name = "Temperature Sensor - Living Room",
                             SeriesId = 1
                         },
                         new
@@ -9279,9 +9279,9 @@ namespace DataPresenter.Server.Migrations
                             Id = 2,
                             ApiKey = "HUM_SALON_KEY",
                             CreatedAt = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Czujnik DHT22 w salonie",
+                            Description = "DHT22 sensor in the living room",
                             IsActive = true,
-                            Name = "Sensor wilgotności - Salon",
+                            Name = "Humidity Sensor - Living Room",
                             SeriesId = 2
                         },
                         new
@@ -9289,9 +9289,9 @@ namespace DataPresenter.Server.Migrations
                             Id = 3,
                             ApiKey = "PRESS_OUT_KEY",
                             CreatedAt = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Czujnik BMP180 na balkonie",
+                            Description = "BMP180 sensor on the balcony",
                             IsActive = true,
-                            Name = "Sensor ciśnienia - Balkon",
+                            Name = "Pressure Sensor - Balcony",
                             SeriesId = 3
                         },
                         new
@@ -9299,9 +9299,9 @@ namespace DataPresenter.Server.Migrations
                             Id = 4,
                             ApiKey = "LIGHT_OFFICE_KEY",
                             CreatedAt = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Czujnik LDR w biurze",
+                            Description = "LDR sensor in the office",
                             IsActive = true,
-                            Name = "Sensor światła - Biuro",
+                            Name = "Light Sensor - Office",
                             SeriesId = 4
                         },
                         new
@@ -9309,9 +9309,9 @@ namespace DataPresenter.Server.Migrations
                             Id = 5,
                             ApiKey = "CO2_KITCHEN_KEY",
                             CreatedAt = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Czujnik MH-Z19B w kuchni",
+                            Description = "MH-Z19B sensor in the kitchen",
                             IsActive = true,
-                            Name = "Sensor CO2 - Kuchnia",
+                            Name = "CO2 Sensor - Kitchen",
                             SeriesId = 5
                         });
                 });
@@ -9369,12 +9369,12 @@ namespace DataPresenter.Server.Migrations
                             Id = 1,
                             Color = "#EF4444",
                             CreatedAt = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Pomiar temperatury w pomieszczeniach",
+                            Description = "Measurement of indoor temperature",
                             Icon = "thermometer",
                             IsActive = true,
                             MaxValue = 50.0,
                             MinValue = -10.0,
-                            Name = "Temperatura pokojowa",
+                            Name = "Room Temperature",
                             Unit = "°C"
                         },
                         new
@@ -9382,12 +9382,12 @@ namespace DataPresenter.Server.Migrations
                             Id = 2,
                             Color = "#3B82F6",
                             CreatedAt = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Pomiar wilgotności względnej",
+                            Description = "Measurement of relative humidity",
                             Icon = "droplet",
                             IsActive = true,
                             MaxValue = 100.0,
                             MinValue = 0.0,
-                            Name = "Wilgotność powietrza",
+                            Name = "Air Humidity",
                             Unit = "%"
                         },
                         new
@@ -9395,12 +9395,12 @@ namespace DataPresenter.Server.Migrations
                             Id = 3,
                             Color = "#10B981",
                             CreatedAt = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Pomiar ciśnienia powietrza",
+                            Description = "Measurement of air pressure",
                             Icon = "gauge",
                             IsActive = true,
                             MaxValue = 1050.0,
                             MinValue = 950.0,
-                            Name = "Ciśnienie atmosferyczne",
+                            Name = "Atmospheric Pressure",
                             Unit = "hPa"
                         },
                         new
@@ -9408,12 +9408,12 @@ namespace DataPresenter.Server.Migrations
                             Id = 4,
                             Color = "#FBBF24",
                             CreatedAt = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Pomiar jasności otoczenia",
+                            Description = "Measurement of ambient brightness",
                             Icon = "sun",
                             IsActive = true,
                             MaxValue = 10000.0,
                             MinValue = 0.0,
-                            Name = "Natężenie światła",
+                            Name = "Light Intensity",
                             Unit = "lx"
                         },
                         new
@@ -9421,12 +9421,12 @@ namespace DataPresenter.Server.Migrations
                             Id = 5,
                             Color = "#6B7280",
                             CreatedAt = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Pomiar dwutlenku węgla w powietrzu",
+                            Description = "Measurement of carbon dioxide levels in the air",
                             Icon = "cloud",
                             IsActive = true,
                             MaxValue = 2000.0,
                             MinValue = 300.0,
-                            Name = "Stężenie CO₂",
+                            Name = "CO₂ Concentration",
                             Unit = "ppm"
                         });
                 });

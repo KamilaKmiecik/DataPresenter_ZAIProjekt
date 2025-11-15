@@ -118,11 +118,11 @@ namespace DataPresenter.Server.Migrations
                 columns: new[] { "Id", "Color", "CreatedAt", "Description", "Icon", "IsActive", "MaxValue", "MinValue", "Name", "Unit" },
                 values: new object[,]
                 {
-                    { 1, "#EF4444", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Pomiar temperatury w pomieszczeniach", "thermometer", true, 50.0, -10.0, "Temperatura pokojowa", "°C" },
-                    { 2, "#3B82F6", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Pomiar wilgotności względnej", "droplet", true, 100.0, 0.0, "Wilgotność powietrza", "%" },
-                    { 3, "#10B981", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Pomiar ciśnienia powietrza", "gauge", true, 1050.0, 950.0, "Ciśnienie atmosferyczne", "hPa" },
-                    { 4, "#FBBF24", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Pomiar jasności otoczenia", "sun", true, 10000.0, 0.0, "Natężenie światła", "lx" },
-                    { 5, "#6B7280", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Pomiar dwutlenku węgla w powietrzu", "cloud", true, 2000.0, 300.0, "Stężenie CO₂", "ppm" }
+                    { 1, "#EF4444", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Measurement of indoor temperature", "thermometer", true, 50.0, -10.0, "Room Temperature", "°C" },
+                    { 2, "#3B82F6", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Measurement of relative humidity", "droplet", true, 100.0, 0.0, "Air Humidity", "%" },
+                    { 3, "#10B981", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Measurement of air pressure", "gauge", true, 1050.0, 950.0, "Atmospheric Pressure", "hPa" },
+                    { 4, "#FBBF24", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Measurement of ambient brightness", "sun", true, 10000.0, 0.0, "Light Intensity", "lx" },
+                    { 5, "#6B7280", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Measurement of carbon dioxide levels in the air", "cloud", true, 2000.0, 300.0, "CO₂ Concentration", "ppm" }
                 });
 
             migrationBuilder.InsertData(
@@ -140,11 +140,11 @@ namespace DataPresenter.Server.Migrations
                 columns: new[] { "Id", "ApiKey", "CreatedAt", "Description", "IsActive", "LastDataReceived", "Name", "SeriesId" },
                 values: new object[,]
                 {
-                    { 1, "TEMP_SALON_KEY", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Czujnik DHT22 w salonie", true, null, "Sensor temperatury - Salon", 1 },
-                    { 2, "HUM_SALON_KEY", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Czujnik DHT22 w salonie", true, null, "Sensor wilgotności - Salon", 2 },
-                    { 3, "PRESS_OUT_KEY", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Czujnik BMP180 na balkonie", true, null, "Sensor ciśnienia - Balkon", 3 },
-                    { 4, "LIGHT_OFFICE_KEY", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Czujnik LDR w biurze", true, null, "Sensor światła - Biuro", 4 },
-                    { 5, "CO2_KITCHEN_KEY", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Czujnik MH-Z19B w kuchni", true, null, "Sensor CO2 - Kuchnia", 5 }
+                    { 1, "TEMP_SALON_KEY", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "DHT22 sensor in the living room", true, null, "Temperature Sensor - Living Room", 1 },
+                    { 2, "HUM_SALON_KEY", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "DHT22 sensor in the living room", true, null, "Humidity Sensor - Living Room", 2 },
+                    { 3, "PRESS_OUT_KEY", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "BMP180 sensor on the balcony", true, null, "Pressure Sensor - Balcony", 3 },
+                    { 4, "LIGHT_OFFICE_KEY", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "LDR sensor in the office", true, null, "Light Sensor - Office", 4 },
+                    { 5, "CO2_KITCHEN_KEY", new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Utc), "MH-Z19B sensor in the kitchen", true, null, "CO2 Sensor - Kitchen", 5 }
                 });
 
             migrationBuilder.InsertData(
