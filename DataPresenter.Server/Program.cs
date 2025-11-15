@@ -131,6 +131,39 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+if (app.Environment.IsProduction())
+{
+    app.UseWhen(context => context.Request.Path.StartsWithSegments("/swagger"), appBuilder =>
+    {
+        appBuilder.Use(async (context, next) =>
+        {
+            var authHeader = context.Request.Headers["Authorization"].ToString();
+            if (!string.IsNullOrEmpty(authHeader) && authHeader.StartsWith("Basic "))
+            {
+                var encodedUsernamePassword = authHeader.Substring("Basic ".Length).Trim();
+                var decodedBytes = Convert.FromBase64String(encodedUsernamePassword);
+                var decoded = System.Text.Encoding.UTF8.GetString(decodedBytes);
+                var parts = decoded.Split(':');
+                var username = parts[0];
+                var password = parts[1];
+
+                var swaggerUser = builder.Configuration["Swagger:User"];
+                var swaggerPass = builder.Configuration["Swagger:Password"];
+
+                if (username == swaggerUser && password == swaggerPass)
+                {
+                    await next.Invoke();
+                    return;
+                }
+            }
+
+            context.Response.Headers["WWW-Authenticate"] = "Basic";
+            context.Response.StatusCode = 401;
+        });
+    });
+}
+
+
 app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");
