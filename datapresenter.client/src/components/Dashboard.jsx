@@ -6,7 +6,6 @@ import TableView from './TableView';
 import Filters from './Filters';
 import Header from './Header';
 import AddMeasurementModal from './AddMeasurementModal';
-import { format } from 'date-fns';
 
 const Dashboard = () => {
     const { isAuthenticated } = useAuth();
@@ -19,8 +18,8 @@ const Dashboard = () => {
     const [showAddModal, setShowAddModal] = useState(false);
 
     const [filters, setFilters] = useState({
-        startDate: format(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), 'yyyy-MM-dd'),
-        endDate: format(new Date(), 'yyyy-MM-dd'),
+        startDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        endDate: new Date().toISOString().split('T')[0],
     });
 
     useEffect(() => {
