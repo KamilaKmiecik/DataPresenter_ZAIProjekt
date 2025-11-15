@@ -8,7 +8,6 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Konfiguracja CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -19,11 +18,9 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Konfiguracja bazy danych
 builder.Services.AddDbContext<DataPresenterDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Konfiguracja JWT
 var jwtKey = builder.Configuration["Jwt:Key"] ?? "YourSuperSecretKeyHereThatIsAtLeast32CharactersLong!";
 var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "MeasurementApp";
 var jwtAudience = builder.Configuration["Jwt:Audience"] ?? "MeasurementAppUsers";
@@ -45,13 +42,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
-// Rejestracja serwisów
 builder.Services.AddScoped<ITokenService, TokenService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-// Konfiguracja Swagger z JWT
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
@@ -66,7 +61,6 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 
-    // Konfiguracja JWT w Swagger
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token in the text input below.",
@@ -91,7 +85,6 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 
-    // Konfiguracja dla API Key (sensory)
     c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
     {
         Description = "API Key for sensors. Enter your API Key in the X-API-Key header.",
@@ -100,7 +93,6 @@ builder.Services.AddSwaggerGen(c =>
         Type = SecuritySchemeType.ApiKey
     });
 
-    // W³¹czenie komentarzy XML (opcjonalne)
     var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     if (File.Exists(xmlPath))
@@ -112,7 +104,6 @@ builder.Services.AddSwaggerGen(c =>
 var app = builder.Build();
 
 
-// Automatyczna migracja bazy danych przy starcie
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<DataPresenterDbContext>();
@@ -127,7 +118,6 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-// Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -146,5 +136,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseDeveloperExceptionPage();
 
 app.Run();
