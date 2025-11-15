@@ -45,7 +45,6 @@ const Filters = ({ series, selectedSeries, onSeriesToggle, filters, onFiltersCha
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Date range filters */}
                 <div style={{
                     background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%)',
                     padding: '20px',
@@ -82,7 +81,6 @@ const Filters = ({ series, selectedSeries, onSeriesToggle, filters, onFiltersCha
                     </div>
                 </div>
 
-                {/* Series selection */}
                 <div style={{
                     background: 'linear-gradient(135deg, rgba(240, 147, 251, 0.05) 0%, rgba(245, 87, 108, 0.05) 100%)',
                     padding: '20px',

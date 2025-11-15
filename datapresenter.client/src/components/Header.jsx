@@ -61,7 +61,7 @@ const Header = ({ onAddClick }) => {
                         <button
                             onClick={handlePrint}
                             className="btn-secondary flex items-center gap-2"
-                            title="Drukuj"
+                            title="Print"
                         >
                             <Printer className="w-4 h-4" />
                             <span className="hidden sm:inline">Print graph</span>

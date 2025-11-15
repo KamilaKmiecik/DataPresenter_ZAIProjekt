@@ -112,7 +112,6 @@ export default function AddMeasurementModal({ isOpen, onClose, onSave, defaultVa
                     animation: "slideUp 0.3s ease"
                 }}
             >
-                {/* Close button */}
                 <button
                     onClick={onClose}
                     style={{
@@ -141,7 +140,6 @@ export default function AddMeasurementModal({ isOpen, onClose, onSave, defaultVa
                     <X className="w-5 h-5" />
                 </button>
 
-                {/* Header */}
                 <div style={{ marginBottom: 24 }}>
                     <div style={{
                         display: "flex",

@@ -51,12 +51,10 @@ const Dashboard = () => {
     const applyFilters = () => {
         let filtered = [...measurements];
 
-        // Filter by series
         if (selectedSeries.length > 0) {
             filtered = filtered.filter((m) => selectedSeries.includes(m.seriesId));
         }
 
-        // Filter by date range
         if (filters.startDate) {
             const startDate = new Date(filters.startDate);
             filtered = filtered.filter((m) => new Date(m.timestamp) >= startDate);
